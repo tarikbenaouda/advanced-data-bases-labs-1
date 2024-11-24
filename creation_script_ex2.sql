@@ -43,7 +43,6 @@ insert into etape values (3, 'benisaf','tlemcen',100);
 insert into equipe values (1, 'sbacy',4);
   
 insert into cycliste values (1, 'amine', 1); 
--- insert into cycliste values (99, 'kader', 1); -- this will raise an error
 insert into resultat values (1, 1, 7000); 
 insert into resultat values (1, 2, 8100);
 insert into resultat values (1, 3, 9500);
