@@ -1,15 +1,13 @@
 DECLARE
-  -- Declare variables to hold cyclist id and their total time
-  v_idcycliste cycliste.idcycliste%TYPE;
-  v_totalTemps NUMBER;
-BEGIN
-  -- Cursor to loop through each cyclist who has participated in all stages
-  FOR cyclist IN (
+  CURSOR cyclist_cursor IS
     SELECT r.idcycliste
     FROM resultat r
     GROUP BY r.idcycliste
-    HAVING COUNT(DISTINCT r.idetape) = (SELECT COUNT(*) FROM etape)
-  ) LOOP
+    HAVING COUNT(DISTINCT r.idetape) = (SELECT COUNT(*) FROM etape);
+  v_totalTemps NUMBER;
+BEGIN
+  -- Cursor to loop through each cyclist who has participated in all stages
+  FOR cyclist IN cyclist_cursor LOOP
     -- Calculate total time for the current cyclist
     SELECT SUM(r.temps)
     INTO v_totalTemps
